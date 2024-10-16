@@ -1,10 +1,10 @@
 import {useMemo} from 'react';
-import {ContentViewProps} from '../ContentViewer.tsx';
+import {MediaViewerProps} from '../MediaViewer.tsx';
 
-const defaultRatio = 3 / 4;
+const DEFAULT_MEDIA_RATIO = 3 / 4;
 const maxAllowedRatio = 9 / 16;
 
-export const useContentViewer = (props: ContentViewProps) => {
+export const useMediaViewer = (props: MediaViewerProps) => {
   const memoContentWidth = useMemo(() => {
     return props.contentWidth;
   }, [props.contentWidth]);
@@ -19,12 +19,12 @@ export const useContentViewer = (props: ContentViewProps) => {
 
   const getAdjustedAspectRatio = useMemo(() => {
     if (!memoContentWidth || !memoContentHeight) {
-      return defaultRatio;
+      return DEFAULT_MEDIA_RATIO;
     }
     const currentRatio = memoContentWidth / memoContentHeight;
 
     if (currentRatio > maxAllowedRatio) {
-      return defaultRatio;
+      return DEFAULT_MEDIA_RATIO;
     }
 
     return memoContentWidth / memoContentHeight;

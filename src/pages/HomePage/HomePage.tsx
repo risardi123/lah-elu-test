@@ -1,23 +1,39 @@
 import React from 'react';
 import {ActivityIndicator} from 'react-native';
 import {useHomePage} from './hooks/useHomePage.tsx';
-import {useViewableItem} from '../../hooks';
+import {useHeaderDirection, useViewableItem} from '../../hooks';
 import {FlashList} from '@shopify/flash-list';
 import {UserHomeContent} from './components/UserHomeContent/UserHomeContent.tsx';
+import {paddingSize} from '../../components/config.ts';
+
 export const HomePage = () => {
   const {posts, loading, fetchMore} = useHomePage();
   const {handleViewableItemsChanged, currentVideoIndex} = useViewableItem();
+  const {handleScroll} = useHeaderDirection();
+
   const renderFooter = () => {
     if (!loading) {
       return null;
     }
     return <ActivityIndicator size="large" color="#0000ff" />;
   };
+
   if (posts.length === 0) {
     return <React.Fragment />;
   }
+
   return (
     <FlashList
+      bounces={false}
+      ListHeaderComponentStyle={{
+        paddingTop: paddingSize.header,
+      }}
+      ListFooterComponentStyle={{
+        paddingBottom: 100,
+        backgroundColor: 'orange',
+      }}
+      onScroll={handleScroll}
+      scrollEventThrottle={16}
       data={posts}
       // this will triggered to re render the child
       extraData={currentVideoIndex}
@@ -45,12 +61,12 @@ export const HomePage = () => {
         </>
       )}
       onEndReached={fetchMore}
-      onEndReachedThreshold={0.3}
+      onEndReachedThreshold={0.5}
       ListFooterComponent={renderFooter}
       estimatedItemSize={posts.length}
       onViewableItemsChanged={handleViewableItemsChanged}
       viewabilityConfig={{
-        minimumViewTime: 300,
+        minimumViewTime: 200,
         viewAreaCoveragePercentThreshold: 50,
         waitForInteraction: false,
       }}

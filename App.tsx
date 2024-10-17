@@ -1,15 +1,13 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import {color} from './src/components/config.ts';
-import {HomePage} from './src/pages';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {RootNavigator} from './src/components';
+import {NavigationContainer} from '@react-navigation/native';
 export default function App() {
   return (
-    <SafeAreaView
-      style={{
-        backgroundColor: color.secondaryBackgroundColor,
-        flex: 1,
-      }}>
-      <HomePage />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }

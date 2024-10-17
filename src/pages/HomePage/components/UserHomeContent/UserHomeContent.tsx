@@ -5,12 +5,12 @@ import {
   paddingSize,
 } from '../../../../components/config.ts';
 import {UserHomeFeedProfile} from '../UserHomeFeedProfile/UserHomeFeedProfile.tsx';
-import {ScrollView, Text, View} from 'react-native';
-import {HashtagButton, MediaViewer} from '../../../../components';
-import {SawerButton} from '../../../../components/SawerButton/SawerButton.tsx';
+import {Text, View} from 'react-native';
+import {MediaViewer} from '../../../../components';
 import {UserHomeFeedbackControl} from '../UserHomeFeedbackControl/UserHomeFeedbackControl.tsx';
 import React from 'react';
 import {MediaViewerProps} from '../../../../components/MediaViewer/MediaViewer.tsx';
+import HashtagList from '../HashtagList/HashtagList.tsx';
 interface UserHomeContentProps {
   avatarUrl?: string;
   username?: string;
@@ -57,21 +57,7 @@ export const UserHomeContent = (props: UserHomeContentProps) => {
         paused={props.paused}
         muted={props.muted}
       />
-      <ScrollView
-        style={{
-          marginHorizontal: paddingSize.xl,
-          paddingVertical: paddingSize.lg,
-        }}
-        horizontal>
-        <SawerButton />
-        {props.hashtag &&
-          Array.isArray(props.hashtag) &&
-          props.hashtag.map(item => {
-            return (
-              <HashtagButton title={item} style={{marginLeft: margin.md}} />
-            );
-          })}
-      </ScrollView>
+      <HashtagList hashtag={props.hashtag} />
 
       <UserHomeFeedbackControl
         titleUp={props.titleUp}

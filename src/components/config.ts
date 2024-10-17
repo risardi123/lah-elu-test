@@ -51,6 +51,7 @@ const paddingSize = {
   '5xl': 32, // Tailwind 'p-8'
   '6xl': 36, // Tailwind 'p-9'
   '7xl': 40, // Tailwind 'p-10'
+  header: 90,
 };
 
 const borderRadius = {
@@ -87,6 +88,8 @@ const color = {
   secondaryFontColor: '',
 
   sawer: '#e99e2d',
+
+  blue: '#55a4ff',
 };
 
 const fontWeight = {

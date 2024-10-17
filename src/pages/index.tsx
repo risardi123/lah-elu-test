@@ -1,3 +1,1 @@
-import HomePage from './HomePage/HomePage.tsx';
-
-export {HomePage};
+export {HomePage} from './HomePage/HomePage.tsx';

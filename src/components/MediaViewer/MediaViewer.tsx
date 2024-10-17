@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {
   Image,
   Text,
@@ -12,10 +12,12 @@ import {useMediaViewer} from './hooks/useMediaViewer.tsx';
 
 export interface MediaViewerProps {
   style?: ViewStyle;
-  contentType?: 0 | 1 | null;
+  contentType?: number;
   contentUrl?: string | null;
   contentWidth?: number;
   contentHeight?: number;
+  muted?: boolean;
+  paused?: boolean;
 }
 
 export const MediaViewer = (props: MediaViewerProps) => {
@@ -37,11 +39,11 @@ export const MediaViewer = (props: MediaViewerProps) => {
           src={memoContentUrl}
           style={{
             aspectRatio: getAdjustedAspectRatio,
-            backgroundColor: 'red',
           }}
           resizeMode="contain"
         />
       )}
+
       {props.contentType === 1 && memoContentUrl && (
         <TouchableWithoutFeedback onPress={() => {}}>
           <Video
@@ -54,6 +56,8 @@ export const MediaViewer = (props: MediaViewerProps) => {
             }}
             resizeMode={'contain'}
             repeat={true}
+            muted={props.muted}
+            paused={props.paused}
           />
         </TouchableWithoutFeedback>
       )}

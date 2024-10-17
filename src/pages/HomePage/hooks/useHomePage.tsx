@@ -45,7 +45,6 @@ export const useHomePage = () => {
       const response = await axios.get<Feed>(
         `https://lahelu.com/api/post/get-posts?feed=1&page=${page}`,
       );
-      console.log(JSON.stringify(response.data, null, 2));
       if (response.data && response.data.postInfos.length > 0) {
         setPosts(prevPosts => [...prevPosts, ...response.data.postInfos]);
         setPage(prevPage => prevPage + 1);
@@ -67,6 +66,7 @@ export const useHomePage = () => {
 
   useEffect(() => {
     fetchPosts();
+    console.log('initialize');
   }, []);
 
   return {

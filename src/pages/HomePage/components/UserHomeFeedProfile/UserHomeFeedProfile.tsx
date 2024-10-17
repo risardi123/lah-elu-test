@@ -1,6 +1,7 @@
 import {Image, Text, View} from 'react-native';
 import {
   borderRadius,
+  color,
   fontSize,
   gapSize,
   paddingSize,
@@ -33,6 +34,7 @@ export const UserHomeFeedProfile = (props: UserHomeFeedProfileProps) => {
             width: 30,
             height: 30,
             borderRadius: borderRadius.full,
+            backgroundColor: color.black,
           }}
         />
         <Text style={{fontSize: fontSize.sm}}>

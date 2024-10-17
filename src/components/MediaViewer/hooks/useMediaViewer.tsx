@@ -2,7 +2,7 @@ import {useMemo} from 'react';
 import {MediaViewerProps} from '../MediaViewer.tsx';
 
 const DEFAULT_MEDIA_RATIO = 3 / 4;
-const maxAllowedRatio = 9 / 16;
+const MAX_ALLOWED_RATIO = 4 / 5;
 
 export const useMediaViewer = (props: MediaViewerProps) => {
   const memoContentWidth = useMemo(() => {
@@ -21,13 +21,15 @@ export const useMediaViewer = (props: MediaViewerProps) => {
     if (!memoContentWidth || !memoContentHeight) {
       return DEFAULT_MEDIA_RATIO;
     }
-    const currentRatio = memoContentWidth / memoContentHeight;
 
-    if (currentRatio > maxAllowedRatio) {
+    const userRatio = memoContentWidth / memoContentHeight;
+
+    // If the content is too wide or has a higher ratio than allowed, return default
+    if (userRatio < MAX_ALLOWED_RATIO) {
       return DEFAULT_MEDIA_RATIO;
     }
 
-    return memoContentWidth / memoContentHeight;
+    return userRatio;
   }, [memoContentWidth, memoContentHeight]);
 
   return {

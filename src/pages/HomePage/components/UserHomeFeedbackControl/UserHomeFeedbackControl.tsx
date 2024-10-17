@@ -2,8 +2,13 @@ import {gapSize, paddingSize} from '../../../../components/config.ts';
 import {View} from 'react-native';
 import React from 'react';
 import {SecondaryButton, UpDownVoteButton} from '../../../../components';
-
-export const UserHomeFeedbackControl = () => {
+interface UserHomeFeedbackControlProps {
+  titleUp?: string;
+  titleComment?: string;
+}
+export const UserHomeFeedbackControl = (
+  props: UserHomeFeedbackControlProps,
+) => {
   return (
     <View
       style={{
@@ -16,11 +21,11 @@ export const UserHomeFeedbackControl = () => {
           flexDirection: 'row',
           gap: gapSize.md,
         }}>
-        <UpDownVoteButton totalUp={'0'} />
+        <UpDownVoteButton totalUp={props.titleUp} />
         <SecondaryButton
           sideIcon={true}
           sideIconName={'message-text-outline'}
-          title={'0'}
+          title={props.titleComment}
         />
       </View>
       <SecondaryButton sideIcon={true} sideIconName={'share-outline'} />

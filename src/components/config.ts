@@ -75,10 +75,10 @@ const borderSize = {
 const color = {
   white: '#fff',
   black: '#000',
-  lightGrey: 'lightGray',
+  lightGrey: 'lightgray',
 
-  primaryBackgroundColor: '',
-  secondaryBackgroundColor: '',
+  primaryBackgroundColor: '#fff',
+  secondaryBackgroundColor: 'lightgray',
 
   primaryBorderColor: 'lightgray',
   secondaryBorderColor: '',

@@ -29,6 +29,7 @@ export const HomePage = () => {
               key={item.userID.toString()}
               username={item.userUsername}
               avatarUrl={item.userAvatar}
+              lastUpdate={item.createTime}
               title={item.title}
               contentUrl={item.media}
               contentType={item.mediaType}
@@ -38,6 +39,7 @@ export const HomePage = () => {
               muted={index !== currentVideoIndex}
               titleUp={item.totalUpvotes.toString()}
               titleComment={item.totalComments.toString()}
+              hashtag={item.hashtags}
             />
           )}
         </>

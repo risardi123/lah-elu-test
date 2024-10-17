@@ -14,7 +14,7 @@ import {MediaViewerProps} from '../../../../components/MediaViewer/MediaViewer.t
 interface UserHomeContentProps {
   avatarUrl?: string;
   username?: string;
-  lastUpdate?: string;
+  lastUpdate?: number;
   title?: string;
   contentUrl?: string;
   contentType?: MediaViewerProps['contentType'];
@@ -24,6 +24,7 @@ interface UserHomeContentProps {
   muted?: boolean;
   titleUp?: string;
   titleComment?: string;
+  hashtag?: Array<string>;
 }
 export const UserHomeContent = (props: UserHomeContentProps) => {
   return (
@@ -56,15 +57,20 @@ export const UserHomeContent = (props: UserHomeContentProps) => {
         paused={props.paused}
         muted={props.muted}
       />
-
       <ScrollView
         style={{
-          paddingHorizontal: paddingSize.xl,
+          marginHorizontal: paddingSize.xl,
           paddingVertical: paddingSize.lg,
         }}
         horizontal>
         <SawerButton />
-        <HashtagButton title={'wtf'} style={{marginLeft: margin.md}} />
+        {props.hashtag &&
+          Array.isArray(props.hashtag) &&
+          props.hashtag.map(item => {
+            return (
+              <HashtagButton title={item} style={{marginLeft: margin.md}} />
+            );
+          })}
       </ScrollView>
 
       <UserHomeFeedbackControl

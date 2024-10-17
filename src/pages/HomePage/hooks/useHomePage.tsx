@@ -16,7 +16,7 @@ interface Post {
   media: string;
   sensitive: boolean;
   mediaType: number;
-  hashTags: Array<string>;
+  hashtags: Array<string>;
   totalCoins: number;
   ageTime: number;
   userUsername: string;

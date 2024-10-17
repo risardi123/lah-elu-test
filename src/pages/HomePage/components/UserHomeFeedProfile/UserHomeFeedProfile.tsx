@@ -7,13 +7,27 @@ import {
   paddingSize,
 } from '../../../../components/config.ts';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import React from 'react';
+import React, {useCallback, useMemo} from 'react';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/id'; // Import Indonesian locale
+
+// Extend dayjs with the relativeTime plugin
+dayjs.extend(relativeTime);
+dayjs.locale('id'); // Set locale to Indonesian
+
 interface UserHomeFeedProfileProps {
   avatarUrl?: string;
   username?: string;
-  lastUpdated?: string;
+  lastUpdated?: number;
 }
 export const UserHomeFeedProfile = (props: UserHomeFeedProfileProps) => {
+  const getTime = useMemo(() => {
+    if (!props.lastUpdated) {
+      return '';
+    }
+    return dayjs(props.lastUpdated).fromNow();
+  }, [props.lastUpdated]);
   return (
     <View
       style={{
@@ -40,7 +54,7 @@ export const UserHomeFeedProfile = (props: UserHomeFeedProfileProps) => {
         <Text style={{fontSize: fontSize.sm}}>
           <Text style={{fontWeight: 'bold'}}>{props.username ?? ''}</Text>
           <Text> • </Text>
-          <Text>{props.lastUpdated ?? ''}</Text>
+          <Text>{getTime}</Text>
         </Text>
       </View>
       <MaterialCommunityIcons name={'dots-horizontal'} size={fontSize.sm} />

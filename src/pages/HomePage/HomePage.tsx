@@ -23,20 +23,24 @@ export const HomePage = () => {
       extraData={currentVideoIndex}
       keyExtractor={item => `post_${item.postID}_${item.userID}_${item.title}`}
       renderItem={({item, index}) => (
-        <UserHomeContent
-          key={item.userID.toString()}
-          username={item.userUsername}
-          avatarUrl={item.userAvatar}
-          title={item.title}
-          contentUrl={item.media}
-          contentType={item.mediaType}
-          contentWidth={item.mediaWidth}
-          contentHeight={item.mediaHeight}
-          paused={index !== currentVideoIndex}
-          muted={index !== currentVideoIndex}
-          titleUp={item.totalUpvotes.toString()}
-          titleComment={item.totalComments.toString()}
-        />
+        <>
+          {item.media && (
+            <UserHomeContent
+              key={item.userID.toString()}
+              username={item.userUsername}
+              avatarUrl={item.userAvatar}
+              title={item.title}
+              contentUrl={item.media}
+              contentType={item.mediaType}
+              contentWidth={item.mediaWidth}
+              contentHeight={item.mediaHeight}
+              paused={index !== currentVideoIndex}
+              muted={index !== currentVideoIndex}
+              titleUp={item.totalUpvotes.toString()}
+              titleComment={item.totalComments.toString()}
+            />
+          )}
+        </>
       )}
       onEndReached={fetchMore}
       onEndReachedThreshold={0.3}

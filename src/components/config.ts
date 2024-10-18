@@ -104,6 +104,8 @@ const fontWeight = {
   black: 900, // Tailwind 'font-black'
 };
 
+const defaultImage = 'https://placehold.co/600x400';
+
 export {
   fontSize,
   gapSize,
@@ -113,4 +115,5 @@ export {
   borderSize,
   color,
   fontWeight,
+  defaultImage,
 };

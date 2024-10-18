@@ -1,6 +1,6 @@
 import {useHeaderDirection} from '../../hooks';
 import React, {useEffect, useRef} from 'react';
-import {Animated, Text, TouchableOpacity, View} from 'react-native';
+import {Animated, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {
   borderSize,
   color,
@@ -25,64 +25,75 @@ export const Header = () => {
 
   return (
     <Animated.View
-      style={{
-        backgroundColor: color.white,
-        width: '100%',
-        height: paddingSize.header, // Animated height
-        position: 'absolute',
-        zIndex: 1,
-        transform: [{translateY: headerHeight}],
-      }}>
-      <View
-        style={{
-          width: 'auto',
-          height: 50,
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexDirection: 'row',
-          paddingHorizontal: margin.xl,
-          borderBottomWidth: borderSize.sm,
-          borderBottomColor: color.lightGrey,
-        }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            gap: gapSize.xl,
-            alignItems: 'center',
-          }}>
-          <MaterialCommunityIcons name={'menu'} size={fontSize['4xl']} />
-          <Text style={{fontSize: fontSize['2xl'], fontWeight: 'bold'}}>
-            LAHELU
-          </Text>
+      style={[styles.header, {transform: [{translateY: headerHeight}]}]}>
+      <View style={styles.topBar}>
+        <View style={styles.menuContainer}>
+          <MaterialCommunityIcons name={'menu'} size={fontSize['2xl']} />
+          <Text style={styles.headerTitle}>LAHELU</Text>
         </View>
-        <MaterialCommunityIcons name={'magnify'} size={fontSize['4xl']} />
+        <MaterialCommunityIcons name={'magnify'} size={fontSize['2xl']} />
       </View>
-      <View
-        style={{
-          width: 'auto',
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-          flex: 1,
-          borderBottomWidth: borderSize.sm,
-          borderBottomColor: color.lightGrey,
-        }}>
-        {['Home', 'Fresh', 'Trending'].map(item => {
-          return (
-            <TouchableOpacity
-              style={{
-                alignSelf: 'center',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flex: 1,
-                height: '100%',
-                borderBottomWidth: borderSize.md,
-                borderBottomColor: item === 'Home' ? color.blue : 'transparent',
-              }}>
-              <Text style={{fontWeight: 'bold'}}>{item}</Text>
-            </TouchableOpacity>
-          );
-        })}
+      <View style={styles.navBar}>
+        {['Home', 'Fresh', 'Trending'].map(item => (
+          <TouchableOpacity
+            key={item}
+            style={[
+              styles.navItem,
+              item === 'Home' && {borderBottomColor: color.blue},
+            ]}>
+            <Text style={styles.navItemText}>{item}</Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </Animated.View>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: color.white,
+    width: '100%',
+    height: paddingSize.header,
+    position: 'absolute',
+    zIndex: 1,
+  },
+  topBar: {
+    width: 'auto',
+    height: 50,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingHorizontal: margin.xl,
+    borderBottomWidth: borderSize.sm,
+    borderBottomColor: color.lightGrey,
+  },
+  menuContainer: {
+    flexDirection: 'row',
+    gap: gapSize.xl,
+    alignItems: 'center',
+  },
+  headerTitle: {
+    fontSize: fontSize['2xl'],
+    fontWeight: 'bold',
+  },
+  navBar: {
+    width: 'auto',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    flex: 1,
+    borderBottomWidth: borderSize.sm,
+    borderBottomColor: color.lightGrey,
+  },
+  navItem: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    height: '100%',
+    borderBottomWidth: borderSize.md,
+    borderBottomColor: 'transparent',
+  },
+  navItemText: {
+    fontWeight: 'bold',
+  },
+});

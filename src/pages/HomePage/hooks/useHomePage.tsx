@@ -66,7 +66,6 @@ export const useHomePage = () => {
 
   useEffect(() => {
     fetchPosts();
-    console.log('initialize');
   }, []);
 
   return {

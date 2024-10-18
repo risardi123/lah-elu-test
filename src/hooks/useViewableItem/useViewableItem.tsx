@@ -1,10 +1,10 @@
 import {useCallback, useState} from 'react';
 import {ViewToken} from '@shopify/flash-list';
 
+// This function is supposed to detect whether the current component is visible.
 export const useViewableItem = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState<number>(0);
 
-  // Function to handle viewable items change
   const handleViewableItemsChanged = useCallback(
     ({viewableItems}: {viewableItems: ViewToken[]}) => {
       if (viewableItems.length > 0) {

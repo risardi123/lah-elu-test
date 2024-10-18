@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import React from 'react';
 import {Header} from '../Header/Header.tsx';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {color} from '../config.ts';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -33,14 +33,15 @@ export const RootNavigator = () => {
 
   return (
     <View
-      style={{
-        backgroundColor: color.secondaryBackgroundColor,
-        flex: 1,
-        paddingTop: insets.top,
-        paddingBottom: insets.bottom,
-        paddingLeft: insets.left,
-        paddingRight: insets.right,
-      }}>
+      style={[
+        styles.container,
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+          paddingRight: insets.right,
+        },
+      ]}>
       <Tab.Navigator
         screenOptions={{headerShown: false, tabBarShowLabel: false}}>
         {tabItems.map(item => (
@@ -72,3 +73,10 @@ export const RootNavigator = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: color.secondaryBackgroundColor,
+    flex: 1,
+  },
+});

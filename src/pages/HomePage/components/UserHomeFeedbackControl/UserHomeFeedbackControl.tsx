@@ -1,26 +1,19 @@
 import {gapSize, paddingSize} from '../../../../components/config.ts';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import React from 'react';
 import {SecondaryButton, UpDownVoteButton} from '../../../../components';
+
 interface UserHomeFeedbackControlProps {
   titleUp?: string;
   titleComment?: string;
 }
+
 export const UserHomeFeedbackControl = (
   props: UserHomeFeedbackControlProps,
 ) => {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingHorizontal: paddingSize.xl,
-      }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          gap: gapSize.md,
-        }}>
+    <View style={styles.container}>
+      <View style={styles.buttonGroup}>
         <UpDownVoteButton totalUp={props.titleUp} />
         <SecondaryButton
           sideIcon={true}
@@ -32,3 +25,15 @@ export const UserHomeFeedbackControl = (
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: paddingSize.xl,
+  },
+  buttonGroup: {
+    flexDirection: 'row',
+    gap: gapSize.md,
+  },
+});

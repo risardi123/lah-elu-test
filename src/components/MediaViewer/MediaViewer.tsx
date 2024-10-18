@@ -4,8 +4,8 @@ import {
   Pressable,
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
+  StyleSheet,
   ViewStyle,
 } from 'react-native';
 import Video from 'react-native-video';
@@ -14,6 +14,7 @@ import {useMediaViewer} from './hooks/useMediaViewer.tsx';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useMediaGlobalControl} from '../../hooks';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {BaseImage} from '../BaseImage/BaseImage.tsx';
 
 export interface MediaViewerProps {
   style?: ViewStyle;
@@ -38,73 +39,40 @@ export const MediaViewer = (props: MediaViewerProps) => {
   const {toggleSound} = useMediaGlobalControl();
 
   return (
-    <View style={{marginTop: margin.lg}}>
+    <View style={[styles.container, {marginTop: margin.lg}]}>
       {!memoContentUrl && (
-        <View
-          style={{
-            backgroundColor: color.primaryBorderColor,
-            aspectRatio: 1,
-          }}>
+        <View style={styles.noContentContainer}>
           <Text>No content to show</Text>
         </View>
       )}
       {props.contentType === 0 && memoContentUrl && (
-        <Image
-          src={memoContentUrl}
-          style={{
-            aspectRatio: getAdjustedAspectRatio,
-          }}
+        <BaseImage
+          source={{uri: memoContentUrl}}
+          style={{aspectRatio: getAdjustedAspectRatio}}
           resizeMode="contain"
         />
       )}
       {props.contentType === 1 && memoContentUrl && (
         <>
-          <View style={{justifyContent: 'center', alignItems: 'center'}}>
-            <>
-              <Video
-                source={{
-                  uri: memoContentUrl,
-                }}
-                style={{
-                  width: '100%',
-                  aspectRatio: getAdjustedAspectRatio,
-                }}
-                resizeMode={'contain'}
-                repeat={true}
-                muted={getMuteState()}
-                paused={getPauseState()}
+          <View style={styles.videoContainer}>
+            <Video
+              source={{uri: memoContentUrl}}
+              style={styles.videoStyle}
+              resizeMode={'contain'}
+              repeat={true}
+              muted={getMuteState()}
+              paused={getPauseState()}
+            />
+            <Pressable onPress={togglePause} style={styles.pressableOverlay}>
+              <MaterialCommunityIcons
+                name={'play-circle'}
+                size={fontSize['6xl']}
+                style={{opacity: pause ? 1 : 0}}
               />
-              <Pressable
-                onPress={togglePause}
-                style={{
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  aspectRatio: getAdjustedAspectRatio,
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  elevation: 3,
-                }}>
-                <MaterialCommunityIcons
-                  name={'play-circle'}
-                  size={fontSize['6xl']}
-                  style={{opacity: pause ? 1 : 0}}
-                />
-              </Pressable>
-            </>
+            </Pressable>
           </View>
           <TouchableOpacity
-            style={{
-              position: 'absolute',
-              bottom: margin.xl,
-              right: margin.xl,
-              backgroundColor: color.primaryBorderColor,
-              borderRadius: borderRadius.full,
-              padding: paddingSize.md,
-              zIndex: 1,
-              elevation: 5,
-            }}
+            style={styles.soundToggleButton}
             onPress={toggleSound}>
             <Entypo
               name={getMuteState() ? 'sound-mute' : 'sound'}
@@ -117,3 +85,42 @@ export const MediaViewer = (props: MediaViewerProps) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: margin.lg,
+  },
+  noContentContainer: {
+    backgroundColor: color.primaryBorderColor,
+    aspectRatio: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  videoContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  videoStyle: {
+    width: '100%',
+    aspectRatio: 1,
+  },
+  pressableOverlay: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 3,
+  },
+  soundToggleButton: {
+    position: 'absolute',
+    bottom: margin.xl,
+    right: margin.xl,
+    backgroundColor: color.primaryBorderColor,
+    borderRadius: borderRadius.full,
+    padding: paddingSize.md,
+    zIndex: 1,
+    elevation: 5,
+  },
+});

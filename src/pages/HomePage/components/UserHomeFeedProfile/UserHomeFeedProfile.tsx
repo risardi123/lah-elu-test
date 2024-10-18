@@ -1,4 +1,4 @@
-import {Image, Text, View} from 'react-native';
+import {Text, View, StyleSheet} from 'react-native';
 import {
   borderRadius,
   color,
@@ -7,14 +7,14 @@ import {
   paddingSize,
 } from '../../../../components/config.ts';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import React, {useCallback, useMemo} from 'react';
+import React, {useMemo} from 'react';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import 'dayjs/locale/id'; // Import Indonesian locale
+import 'dayjs/locale/id';
+import {BaseImage} from '../../../../components';
 
-// Extend dayjs with the relativeTime plugin
 dayjs.extend(relativeTime);
-dayjs.locale('id'); // Set locale to Indonesian
+dayjs.locale('id');
 
 interface UserHomeFeedProfileProps {
   avatarUrl?: string;
@@ -28,31 +28,18 @@ export const UserHomeFeedProfile = (props: UserHomeFeedProfileProps) => {
     }
     return dayjs(props.lastUpdated).fromNow();
   }, [props.lastUpdated]);
+
   return (
-    <View
-      style={{
-        paddingHorizontal: paddingSize.xl,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: gapSize.md,
-        }}>
-        <Image
-          src={props.avatarUrl ?? ''}
-          style={{
-            width: 30,
-            height: 30,
-            borderRadius: borderRadius.full,
-            backgroundColor: color.black,
+    <View style={styles.container}>
+      <View style={styles.profileInfo}>
+        <BaseImage
+          source={{
+            uri: props.avatarUrl,
           }}
+          style={styles.avatar}
         />
-        <Text style={{fontSize: fontSize.sm}}>
-          <Text style={{fontWeight: 'bold'}}>{props.username ?? ''}</Text>
+        <Text style={styles.usernameText}>
+          <Text style={styles.username}>{props.username ?? ''}</Text>
           <Text> • </Text>
           <Text>{getTime}</Text>
         </Text>
@@ -61,3 +48,29 @@ export const UserHomeFeedProfile = (props: UserHomeFeedProfileProps) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: paddingSize.xl,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  profileInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: gapSize.md,
+  },
+  avatar: {
+    width: 30,
+    height: 30,
+    borderRadius: borderRadius.full,
+    backgroundColor: color.black,
+  },
+  usernameText: {
+    fontSize: fontSize.sm,
+  },
+  username: {
+    fontWeight: 'bold',
+  },
+});

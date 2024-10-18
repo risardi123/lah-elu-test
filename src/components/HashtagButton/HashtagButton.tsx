@@ -1,13 +1,6 @@
-import {
-  borderRadius,
-  borderSize,
-  color,
-  fontSize,
-  gapSize,
-  paddingSize,
-} from '../config.ts';
-import {Text, TouchableOpacity, ViewStyle} from 'react-native';
-import React from 'react';
+import {ViewStyle} from 'react-native';
+import {Button} from '../Button/Button.tsx';
+import {color} from '../config.ts';
 
 interface HashtagButtonProps {
   style?: ViewStyle;
@@ -17,24 +10,14 @@ interface HashtagButtonProps {
 
 export const HashtagButton = (props: HashtagButtonProps) => {
   return (
-    <TouchableOpacity
-      style={{
-        flexDirection: 'row',
-        backgroundColor: color.primaryBackgroundColor,
-        borderWidth: borderSize.sm,
-        paddingHorizontal: paddingSize.md,
-        borderRadius: borderRadius.full,
-        borderColor: color.primaryBorderColor,
-        gap: gapSize.md,
-        ...props.style,
-      }}
-      onPress={props.onPress}>
-      <Text>#</Text>
-      {props.title && (
-        <Text style={{fontWeight: 'bold', fontSize: fontSize.md}}>
-          {props.title}
-        </Text>
-      )}
-    </TouchableOpacity>
+    <Button
+      style={props.style}
+      onPress={props.onPress}
+      title={props.title}
+      prefix="#"
+      backgroundColor={color.primaryBackgroundColor}
+      borderColor={color.primaryBorderColor}
+      textColor={color.black}
+    />
   );
 };

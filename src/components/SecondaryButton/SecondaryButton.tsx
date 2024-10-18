@@ -7,28 +7,19 @@ import {
   paddingSize,
 } from '../config.ts';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
-interface SecondaryButton {
+
+interface SecondaryButtonProps {
   sideIcon?: boolean;
   sideIconName?: string;
   title?: string;
   onPress?: () => void;
 }
-export const SecondaryButton = (props: SecondaryButton) => {
+
+export const SecondaryButton = (props: SecondaryButtonProps) => {
   return (
-    <TouchableOpacity
-      onPress={props.onPress}
-      style={{
-        paddingVertical: paddingSize.md,
-        paddingHorizontal: paddingSize.lg,
-        borderWidth: borderSize.sm,
-        flexDirection: 'row',
-        borderColor: color.primaryBorderColor,
-        borderRadius: borderRadius.lg,
-        gap: gapSize.sm,
-        alignItems: 'center',
-      }}>
+    <TouchableOpacity onPress={props.onPress} style={styles.buttonContainer}>
       {props.sideIcon && (
         <MaterialCommunityIcons
           name={props.sideIconName ?? ''}
@@ -36,14 +27,25 @@ export const SecondaryButton = (props: SecondaryButton) => {
         />
       )}
       {props.title && (
-        <Text
-          style={{
-            fontSize: fontSize.lg,
-            fontWeight: 700,
-          }}>
-          {props.title.toString()}
-        </Text>
+        <Text style={styles.buttonText}>{props.title.toString()}</Text>
       )}
     </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    paddingVertical: paddingSize.md,
+    paddingHorizontal: paddingSize.lg,
+    borderWidth: borderSize.sm,
+    flexDirection: 'row',
+    borderColor: color.primaryBorderColor,
+    borderRadius: borderRadius.lg,
+    gap: gapSize.sm,
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: fontSize.lg,
+    fontWeight: 'bold',
+  },
+});

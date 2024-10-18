@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, ScrollView} from 'react-native';
 import {HashtagButton} from '../../../../components';
 import {SawerButton} from '../../../../components/SawerButton/SawerButton.tsx';
-import {paddingSize} from '../../../../components/config.ts';
+import {paddingSize, margin} from '../../../../components/config.ts';
 
 interface HashtagListProps {
   hashtag?: string[];
@@ -10,7 +10,7 @@ interface HashtagListProps {
 
 const HashtagList = (props: HashtagListProps) => {
   return (
-    <ScrollView horizontal={true} style={{margin: paddingSize.xl}}>
+    <ScrollView horizontal={true} style={styles.scrollView}>
       <SawerButton />
       {props.hashtag &&
         Array.isArray(props.hashtag) &&
@@ -22,8 +22,11 @@ const HashtagList = (props: HashtagListProps) => {
 };
 
 const styles = StyleSheet.create({
+  scrollView: {
+    margin: paddingSize.xl,
+  },
   button: {
-    marginLeft: 8, // replace with margin.md if you have a margin variable set
+    marginLeft: margin.md,
   },
 });
 

@@ -47,7 +47,6 @@ export const UserHomeContent = (props: UserHomeContentProps) => {
         muted={props.muted}
       />
       <HashtagList hashtag={props.hashtag} />
-
       <UserHomeFeedbackControl
         titleUp={props.titleUp}
         titleComment={props.titleComment}

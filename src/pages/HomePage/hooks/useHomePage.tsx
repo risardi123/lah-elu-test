@@ -1,6 +1,7 @@
 import {useCallback, useEffect, useState} from 'react';
 import axios from 'axios';
 import {BASE_API_URL} from '@env';
+import {atom} from 'jotai';
 
 interface Post {
   postID: number;
@@ -30,7 +31,7 @@ interface Feed {
   nextPage: number;
   hasMore: boolean;
 }
-
+export const disableScrollHomeAtom = atom(true);
 export const useHomePage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [page, setPage] = useState<number>(1);

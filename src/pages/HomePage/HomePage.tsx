@@ -1,15 +1,17 @@
 import React from 'react';
 import {ActivityIndicator} from 'react-native';
-import {useHomePage} from './hooks/useHomePage.tsx';
+import {disableScrollHomeAtom, useHomePage} from './hooks/useHomePage.tsx';
 import {useHeaderDirection, useViewableItem} from '../../hooks';
 import {FlashList} from '@shopify/flash-list';
 import {UserHomeContent} from './components/UserHomeContent/UserHomeContent.tsx';
 import {paddingSize} from '../../components/config.ts';
+import {useAtomValue} from 'jotai/index';
 
 export const HomePage = () => {
   const {posts, loading, fetchMore} = useHomePage();
   const {handleViewableItemsChanged, currentVideoIndex} = useViewableItem();
   const {handleScroll} = useHeaderDirection();
+  const disableScrollHome = useAtomValue(disableScrollHomeAtom);
 
   const renderFooter = () => {
     if (!loading) {
@@ -24,6 +26,7 @@ export const HomePage = () => {
 
   return (
     <FlashList
+      scrollEnabled={disableScrollHome}
       bounces={false}
       ListHeaderComponentStyle={{
         paddingTop: paddingSize.header,

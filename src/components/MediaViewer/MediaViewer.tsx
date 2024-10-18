@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Image,
   Pressable,
   Text,
   TouchableOpacity,
@@ -9,12 +8,20 @@ import {
   ViewStyle,
 } from 'react-native';
 import Video from 'react-native-video';
-import {borderRadius, color, fontSize, margin, paddingSize} from '../config.ts';
+import {
+  borderRadius,
+  color,
+  defaultMaxSliderVideo,
+  fontSize,
+  margin,
+  paddingSize,
+} from '../config.ts';
 import {useMediaViewer} from './hooks/useMediaViewer.tsx';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useMediaGlobalControl} from '../../hooks';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {BaseImage} from '../BaseImage/BaseImage.tsx';
+import {SliderVideo} from '../SliderVideo/SliderVideo.tsx';
 
 export interface MediaViewerProps {
   style?: ViewStyle;
@@ -71,6 +78,7 @@ export const MediaViewer = (props: MediaViewerProps) => {
               />
             </Pressable>
           </View>
+          <SliderVideo />
           <TouchableOpacity
             style={styles.soundToggleButton}
             onPress={toggleSound}>
@@ -121,6 +129,6 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.full,
     padding: paddingSize.md,
     zIndex: 1,
-    elevation: 5,
+    elevation: 4,
   },
 });

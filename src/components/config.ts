@@ -106,6 +106,9 @@ const fontWeight = {
 
 const defaultImage = 'https://placehold.co/600x400';
 
+const defaultSliderVideo = 5;
+const defaultMaxSliderVideo = 10;
+
 export {
   fontSize,
   gapSize,
@@ -116,4 +119,6 @@ export {
   color,
   fontWeight,
   defaultImage,
+  defaultSliderVideo,
+  defaultMaxSliderVideo,
 };

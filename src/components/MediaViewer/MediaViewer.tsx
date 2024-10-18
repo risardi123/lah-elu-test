@@ -8,14 +8,7 @@ import {
   ViewStyle,
 } from 'react-native';
 import Video from 'react-native-video';
-import {
-  borderRadius,
-  color,
-  defaultMaxSliderVideo,
-  fontSize,
-  margin,
-  paddingSize,
-} from '../config.ts';
+import {borderRadius, color, fontSize, margin, paddingSize} from '../config.ts';
 import {useMediaViewer} from './hooks/useMediaViewer.tsx';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useMediaGlobalControl} from '../../hooks';

@@ -1,5 +1,6 @@
 import {useCallback, useEffect, useState} from 'react';
 import axios from 'axios';
+import {BASE_API_URL} from '@env';
 
 interface Post {
   postID: number;
@@ -43,7 +44,7 @@ export const useHomePage = () => {
     setLoading(true);
     try {
       const response = await axios.get<Feed>(
-        `https://lahelu.com/api/post/get-posts?feed=1&page=${page}`,
+        `${BASE_API_URL}/post/get-posts?feed=1&page=${page}`,
       );
       if (response.data && response.data.postInfos.length > 0) {
         setPosts(prevPosts => [...prevPosts, ...response.data.postInfos]);

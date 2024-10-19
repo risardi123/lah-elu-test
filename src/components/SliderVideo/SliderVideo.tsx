@@ -6,6 +6,7 @@ import Animated from 'react-native-reanimated';
 import {useSliderVideo} from './useSliderVideo/useSliderVideo.tsx';
 import {color, defaultSliderVideo} from '../config.ts';
 import {View} from 'react-native';
+import {SliderTime} from './SliderTime.tsx';
 
 interface SliderVideoProps {
   duration: number;
@@ -18,12 +19,17 @@ export const SliderVideo = ({
   onSeek,
   currentTime,
 }: SliderVideoProps) => {
-  const {scaledX, combinedGesture, onLayout, animatedHeightStyle} =
-    useSliderVideo({
-      duration,
-      onSeek,
-      currentTime,
-    });
+  const {
+    scaledX,
+    userSlideTime,
+    combinedGesture,
+    onLayout,
+    animatedHeightStyle,
+  } = useSliderVideo({
+    duration,
+    onSeek,
+    currentTime,
+  });
 
   return (
     <GestureHandlerRootView
@@ -32,6 +38,7 @@ export const SliderVideo = ({
         minHeight: defaultSliderVideo,
         justifyContent: 'center',
       }}>
+      <SliderTime userSlideTime={userSlideTime} duration={duration} />
       <GestureDetector gesture={combinedGesture}>
         <View style={{paddingBottom: 5}}>
           <Animated.View

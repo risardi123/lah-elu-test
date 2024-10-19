@@ -30,6 +30,7 @@ export const useSliderVideo = ({
   const scaledX = useSharedValue(0);
   const userInteracting = useSharedValue(false);
   const [localScaledX, setLocalScaledX] = useState(0);
+  const [userSlideTime, setUserSlideTime] = useState(0);
 
   // Update scaledX based on currentTime, while not interacting
   useEffect(() => {
@@ -47,7 +48,9 @@ export const useSliderVideo = ({
 
   const seekTime = (scaledXValue: number) => {
     'worklet';
-    return (scaledXValue / 100) * duration;
+    const calculateSeekTime = (scaledXValue / 100) * duration;
+    runOnJS(setUserSlideTime)(calculateSeekTime);
+    return calculateSeekTime;
   };
 
   // Unified gesture handler to update scaledX and trigger onSeek
@@ -98,6 +101,7 @@ export const useSliderVideo = ({
     combinedGesture,
     onLayout,
     animatedHeightStyle,
-    localScaledX, // Expose local state if needed for UI rendering
+    localScaledX,
+    userSlideTime,
   };
 };

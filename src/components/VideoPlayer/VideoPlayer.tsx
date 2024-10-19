@@ -1,5 +1,11 @@
 import {MediaViewerProps} from '../MediaViewer/MediaViewer.tsx';
-import {Pressable, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Video from 'react-native-video';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {borderRadius, color, fontSize, margin, paddingSize} from '../config.ts';

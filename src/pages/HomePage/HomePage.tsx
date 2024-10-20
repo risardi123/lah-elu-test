@@ -6,6 +6,7 @@ import {FlashList} from '@shopify/flash-list';
 import {UserHomeContent} from './components/UserHomeContent/UserHomeContent.tsx';
 import {paddingSize} from '../../components/config.ts';
 import {useAtomValue} from 'jotai/index';
+import {Header} from '../../components';
 
 export const HomePage = () => {
   const {posts, loading, fetchMore} = useHomePage();
@@ -25,54 +26,59 @@ export const HomePage = () => {
   }
 
   return (
-    <FlashList
-      scrollEnabled={disableScrollHome}
-      bounces={false}
-      ListHeaderComponentStyle={{
-        paddingTop: paddingSize.header,
-      }}
-      ListFooterComponentStyle={{
-        paddingBottom: 100,
-        backgroundColor: 'orange',
-      }}
-      onScroll={handleScroll}
-      scrollEventThrottle={16}
-      data={posts}
-      // this will triggered to re render the child
-      extraData={currentVideoIndex}
-      keyExtractor={item => `post_${item.postID}_${item.userID}_${item.title}`}
-      renderItem={({item, index}) => (
-        <>
-          {item.media && (
-            <UserHomeContent
-              key={item.userID.toString()}
-              username={item.userUsername}
-              avatarUrl={item.userAvatar}
-              lastUpdate={item.createTime}
-              title={item.title}
-              contentUrl={item.media}
-              contentType={item.mediaType}
-              contentWidth={item.mediaWidth}
-              contentHeight={item.mediaHeight}
-              paused={index !== currentVideoIndex}
-              muted={index !== currentVideoIndex}
-              titleUp={item.totalUpvotes.toString()}
-              titleComment={item.totalComments.toString()}
-              hashtag={item.hashtags}
-            />
-          )}
-        </>
-      )}
-      onEndReached={fetchMore}
-      onEndReachedThreshold={0.5}
-      ListFooterComponent={renderFooter}
-      estimatedItemSize={posts.length}
-      onViewableItemsChanged={handleViewableItemsChanged}
-      viewabilityConfig={{
-        minimumViewTime: 200,
-        viewAreaCoveragePercentThreshold: 50,
-        waitForInteraction: false,
-      }}
-    />
+    <>
+      <Header />
+      <FlashList
+        scrollEnabled={disableScrollHome}
+        bounces={false}
+        ListHeaderComponentStyle={{
+          paddingTop: paddingSize.header,
+        }}
+        ListFooterComponentStyle={{
+          paddingBottom: 100,
+          backgroundColor: 'orange',
+        }}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+        data={posts}
+        // this will triggered to re render the child
+        extraData={currentVideoIndex}
+        keyExtractor={item =>
+          `post_${item.postID}_${item.userID}_${item.title}`
+        }
+        renderItem={({item, index}) => (
+          <>
+            {item.media && (
+              <UserHomeContent
+                key={item.userID.toString()}
+                username={item.userUsername}
+                avatarUrl={item.userAvatar}
+                lastUpdate={item.createTime}
+                title={item.title}
+                contentUrl={item.media}
+                contentType={item.mediaType}
+                contentWidth={item.mediaWidth}
+                contentHeight={item.mediaHeight}
+                paused={index !== currentVideoIndex}
+                muted={index !== currentVideoIndex}
+                titleUp={item.totalUpvotes.toString()}
+                titleComment={item.totalComments.toString()}
+                hashtag={item.hashtags}
+              />
+            )}
+          </>
+        )}
+        onEndReached={fetchMore}
+        onEndReachedThreshold={0.5}
+        ListFooterComponent={renderFooter}
+        estimatedItemSize={posts.length}
+        onViewableItemsChanged={handleViewableItemsChanged}
+        viewabilityConfig={{
+          minimumViewTime: 200,
+          viewAreaCoveragePercentThreshold: 50,
+          waitForInteraction: false,
+        }}
+      />
+    </>
   );
 };

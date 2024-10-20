@@ -11,20 +11,30 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {borderRadius, color, fontSize, margin, paddingSize} from '../config.ts';
 import {SliderVideo} from '../SliderVideo/SliderVideo.tsx';
 import Entypo from 'react-native-vector-icons/Entypo';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useMediaViewer} from '../MediaViewer/hooks/useMediaViewer.tsx';
 import {useMediaGlobalControl} from '../../hooks';
 import {useAtomValue} from 'jotai/index';
 import {disableScrollHomeAtom} from '../../pages/HomePage/hooks/useHomePage.tsx';
 import {useVideoPlayer} from './hooks/useVideoPlayer.tsx';
+import {useIsFocused} from '@react-navigation/native';
 
 export const VideoPlayer = (props: MediaViewerProps) => {
+  const isFocused = useIsFocused();
   const {togglePause, getPauseState, getMuteState, pause, memoContentUrl} =
     useMediaViewer(props);
   const {videoRef, onLoad, onProgress, onSeek, duration, currentTime} =
     useVideoPlayer();
   const {toggleSound} = useMediaGlobalControl();
   const disableScrollHome = useAtomValue(disableScrollHomeAtom);
+
+  useEffect(() => {
+    if (isFocused) {
+      togglePause(); // Continue playing when screen is focused
+    } else {
+      togglePause(); // Pause when screen is not focused
+    }
+  }, [isFocused]);
 
   return (
     <>

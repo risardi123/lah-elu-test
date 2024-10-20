@@ -7,3 +7,4 @@ export {RootNavigator} from './RootNavigator/RootNavigator.tsx';
 export {BaseImage} from './BaseImage/BaseImage.tsx';
 export {Button} from './Button/Button.tsx';
 export {SliderVideo} from './SliderVideo/SliderVideo.tsx';
+export {CustomDrawerContent} from './CustomDrawer/CustomDrawer.tsx';

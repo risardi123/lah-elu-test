@@ -1,5 +1,5 @@
 import {useHeaderDirection} from '../../hooks';
-import React, {useEffect, useRef} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 import {Animated, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import {
   borderSize,
@@ -10,9 +10,17 @@ import {
   paddingSize,
 } from '../config.ts';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-export const Header = () => {
+import {DrawerActions, useNavigation} from '@react-navigation/native';
+interface HeaderProps {
+  disabled?: boolean;
+}
+export const Header = (props: HeaderProps) => {
+  const navigation = useNavigation();
   const {direction} = useHeaderDirection();
+
+  const openDrawer = useCallback(() => {
+    navigation.dispatch(DrawerActions.openDrawer);
+  }, []);
 
   const headerHeight = useRef(new Animated.Value(paddingSize.header)).current;
   useEffect(() => {
@@ -25,10 +33,19 @@ export const Header = () => {
 
   return (
     <Animated.View
-      style={[styles.header, {transform: [{translateY: headerHeight}]}]}>
+      style={[
+        styles.header,
+        {
+          transform: [{translateY: props.disabled ? 0 : headerHeight}],
+        },
+      ]}>
       <View style={styles.topBar}>
         <View style={styles.menuContainer}>
-          <MaterialCommunityIcons name={'menu'} size={fontSize['2xl']} />
+          <MaterialCommunityIcons
+            name={'menu'}
+            size={fontSize['2xl']}
+            onPress={openDrawer}
+          />
           <Text style={styles.headerTitle}>LAHELU</Text>
         </View>
         <MaterialCommunityIcons name={'magnify'} size={fontSize['2xl']} />

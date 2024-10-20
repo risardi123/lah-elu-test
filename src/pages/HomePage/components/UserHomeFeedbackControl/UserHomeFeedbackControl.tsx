@@ -1,7 +1,7 @@
-import {gapSize, paddingSize} from '../../../../components/config.ts';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import {SecondaryButton, UpDownVoteButton} from '../../../../components';
+import {styles} from './UserHomeFeedbackControl.style.tsx';
 
 interface UserHomeFeedbackControlProps {
   titleUp?: string;
@@ -25,15 +25,3 @@ export const UserHomeFeedbackControl = (
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: paddingSize.xl,
-  },
-  buttonGroup: {
-    flexDirection: 'row',
-    gap: gapSize.md,
-  },
-});

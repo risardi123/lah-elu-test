@@ -1,4 +1,4 @@
-import {color, fontSize, paddingSize} from '../config.ts';
+import {color, fontSize, paddingSize} from '../../config.ts';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Text, TouchableOpacity} from 'react-native';
 import React from 'react';

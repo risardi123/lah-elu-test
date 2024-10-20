@@ -1,14 +1,8 @@
-import {
-  borderRadius,
-  borderSize,
-  color,
-  fontSize,
-  gapSize,
-  paddingSize,
-} from '../config.ts';
+import {fontSize} from '../../config.ts';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {styles} from './SecondaryButton.style.tsx';
 
 interface SecondaryButtonProps {
   sideIcon?: boolean;
@@ -32,20 +26,3 @@ export const SecondaryButton = (props: SecondaryButtonProps) => {
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  buttonContainer: {
-    paddingVertical: paddingSize.md,
-    paddingHorizontal: paddingSize.lg,
-    borderWidth: borderSize.sm,
-    flexDirection: 'row',
-    borderColor: color.primaryBorderColor,
-    borderRadius: borderRadius.lg,
-    gap: gapSize.sm,
-    alignItems: 'center',
-  },
-  buttonText: {
-    fontSize: fontSize.lg,
-    fontWeight: 'bold',
-  },
-});

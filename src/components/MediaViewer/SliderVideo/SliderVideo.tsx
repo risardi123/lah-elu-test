@@ -4,7 +4,7 @@ import {
 } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 import {useSliderVideo} from './useSliderVideo/useSliderVideo.tsx';
-import {color, defaultSliderVideo} from '../config.ts';
+import {color, defaultSliderVideo} from '../../config.ts';
 import {View} from 'react-native';
 import {SliderTime} from './SliderTime.tsx';
 

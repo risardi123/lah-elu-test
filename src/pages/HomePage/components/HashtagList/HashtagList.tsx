@@ -1,8 +1,8 @@
 import React from 'react';
-import {StyleSheet, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import {HashtagButton} from '../../../../components';
-import {SawerButton} from '../../../../components/SawerButton/SawerButton.tsx';
-import {paddingSize, margin} from '../../../../components/config.ts';
+import {SawerButton} from '../../../../components/Button/SawerButton/SawerButton.tsx';
+import {styles} from './HashtagList.style.tsx';
 
 interface HashtagListProps {
   hashtag?: string[];
@@ -20,14 +20,5 @@ const HashtagList = (props: HashtagListProps) => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    margin: paddingSize.xl,
-  },
-  button: {
-    marginLeft: margin.md,
-  },
-});
 
 export default HashtagList;

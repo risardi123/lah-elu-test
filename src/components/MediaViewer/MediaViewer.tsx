@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, ViewStyle} from 'react-native';
 import {color, margin} from '../config.ts';
 import {useMediaViewer} from './hooks/useMediaViewer.tsx';
 import {BaseImage} from '../BaseImage/BaseImage.tsx';
-import {VideoPlayer} from '../VideoPlayer/VideoPlayer.tsx';
+import {VideoPlayer} from './VideoPlayer/VideoPlayer.tsx';
 
 export interface MediaViewerProps {
   style?: ViewStyle;

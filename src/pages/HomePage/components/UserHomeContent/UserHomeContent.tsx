@@ -1,16 +1,11 @@
-import {
-  color,
-  fontSize,
-  margin,
-  paddingSize,
-} from '../../../../components/config.ts';
 import {UserHomeFeedProfile} from '../UserHomeFeedProfile/UserHomeFeedProfile.tsx';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View} from 'react-native';
 import {MediaViewer} from '../../../../components';
 import {UserHomeFeedbackControl} from '../UserHomeFeedbackControl/UserHomeFeedbackControl.tsx';
 import React from 'react';
 import {MediaViewerProps} from '../../../../components/MediaViewer/MediaViewer.tsx';
 import HashtagList from '../HashtagList/HashtagList.tsx';
+import {styles} from './UserHomeContent.style.tsx';
 
 interface UserHomeContentProps {
   avatarUrl?: string;
@@ -54,17 +49,3 @@ export const UserHomeContent = (props: UserHomeContentProps) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: margin.sm,
-    paddingVertical: paddingSize.xl,
-    backgroundColor: color.primaryBackgroundColor,
-  },
-  title: {
-    fontSize: fontSize.lg,
-    fontWeight: 'bold',
-    paddingHorizontal: paddingSize.xl,
-    marginTop: margin.md,
-  },
-});

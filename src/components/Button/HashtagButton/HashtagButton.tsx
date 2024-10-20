@@ -1,6 +1,6 @@
 import {ViewStyle} from 'react-native';
-import {Button} from '../Button/Button.tsx';
-import {color} from '../config.ts';
+import {Button} from '../Button.tsx';
+import {color} from '../../config.ts';
 
 interface HashtagButtonProps {
   style?: ViewStyle;

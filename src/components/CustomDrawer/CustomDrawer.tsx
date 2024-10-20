@@ -3,8 +3,8 @@ import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
-import {PostMemeLogin} from '../PostMemeLogin/PostMemeLogin.tsx';
-import {ButtonSideBar} from '../ButtonSideBar/ButtonSideBar.tsx';
+import {PostMemeLogin} from '../Card/PostMemeLogin/PostMemeLogin.tsx';
+import {ButtonSideBar} from '../Button/ButtonSideBar/ButtonSideBar.tsx';
 
 export const CustomDrawerContent: React.FC<
   DrawerContentComponentProps

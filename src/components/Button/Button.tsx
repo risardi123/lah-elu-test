@@ -1,13 +1,7 @@
-import {
-  borderRadius,
-  borderSize,
-  color,
-  fontSize,
-  gapSize,
-  paddingSize,
-} from '../config.ts';
-import {Text, TouchableOpacity, StyleSheet, ViewStyle} from 'react-native';
+import {color} from '../config.ts';
+import {Text, TouchableOpacity, ViewStyle} from 'react-native';
 import React from 'react';
+import {styles} from './Button.style.tsx';
 
 interface ButtonProps {
   style?: ViewStyle;
@@ -46,17 +40,3 @@ export const Button = (props: ButtonProps) => {
     </TouchableOpacity>
   );
 };
-const styles = StyleSheet.create({
-  button: {
-    flexDirection: 'row',
-    borderWidth: borderSize.sm,
-    paddingHorizontal: paddingSize.md,
-    borderRadius: borderRadius.full,
-    gap: gapSize.md,
-    alignItems: 'center',
-  },
-  buttonText: {
-    fontWeight: 'bold',
-    fontSize: fontSize.md,
-  },
-});

@@ -7,9 +7,9 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import {LayoutChangeEvent} from 'react-native';
-import {defaultMaxSliderVideo, defaultSliderVideo} from '../../config';
+import {defaultMaxSliderVideo, defaultSliderVideo} from '../../../config.ts';
 import {useSetAtom} from 'jotai';
-import {disableScrollHomeAtom} from '../../../pages/HomePage/hooks/useHomePage';
+import {disableScrollHomeAtom} from '../../../../pages/HomePage/hooks/useHomePage.tsx';
 
 type UseSliderVideoProps = {
   duration: number;

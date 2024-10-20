@@ -1,11 +1,11 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {HomePage} from '../../pages';
+import {HomePage} from '../../../pages';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React from 'react';
-import {Header} from '../Header/Header.tsx';
+import {Header} from '../../Header/Header.tsx';
 import {View, StyleSheet, Text} from 'react-native';
-import {color, paddingSize} from '../config.ts';
+import {color, paddingSize} from '../../config.ts';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {atom} from 'jotai';
 export const BlankScreen = () => {
